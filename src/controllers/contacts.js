@@ -6,9 +6,21 @@ import {
   getExactContact,
   updateContact,
 } from '../services/contacts.js';
+import { parsePaginationParams } from '../utils/parsePaginationParams.js';
+import { parseSortParams } from '../utils/parseSortParams.js';
+import { parseFilterParams } from '../utils/parseFilterParams.js';
 
 export const getAllContactsController = async (req, res) => {
-  const allContacts = await getAllContacts();
+  const { page, perPage } = await parsePaginationParams(req.query);
+  const { sortBy, sortOrder } = await parseSortParams(req.query);
+  const filter = await parseFilterParams(req.query);
+  const allContacts = await getAllContacts({
+    page,
+    perPage,
+    sortBy,
+    sortOrder,
+    filter,
+  });
 
   res.status(200).json({
     status: 200,
