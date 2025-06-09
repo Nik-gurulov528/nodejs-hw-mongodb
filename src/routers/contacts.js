@@ -13,31 +13,36 @@ import {
   updateValidation,
 } from '../validation/validationSchemas.js';
 import { isValidId } from '../validation/isValidId.js';
+import { authenticate } from '../middlewares/authenticate.js';
 
 const router = Router();
 
-router.get('/contacts', ctrlWrapper(getAllContactsController));
+router.get('/', authenticate, ctrlWrapper(getAllContactsController));
 router.get(
-  '/contacts/:contactId',
+  '/:contactId',
+  authenticate,
   isValidId,
   ctrlWrapper(getExactContactController),
 );
 
 router.post(
-  '/contacts',
+  '/',
+  authenticate,
   validateBody(createValidation),
   ctrlWrapper(createContactController),
 );
 
 router.patch(
-  '/contacts/:contactId',
+  '/:contactId',
+  authenticate,
   isValidId,
   validateBody(updateValidation),
   ctrlWrapper(updateContactController),
 );
 
 router.delete(
-  '/contacts/:contactId',
+  '/:contactId',
+  authenticate,
   isValidId,
   ctrlWrapper(deleteContactController),
 );
