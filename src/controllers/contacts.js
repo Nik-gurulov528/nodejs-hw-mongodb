@@ -35,9 +35,9 @@ export const getAllContactsController = async (req, res) => {
 export const getExactContactController = async (req, res, next) => {
   const { contactId } = req.params;
   const userId = await getUserId(req);
-  const exactContact = await getExactContact(contactId);
+  const exactContact = await getExactContact(contactId, userId);
 
-  if (!exactContact || exactContact.ownerId !== userId) {
+  if (!exactContact) {
     throw createHttpError(404, 'Contact not found!');
   }
   res.status(200).json({

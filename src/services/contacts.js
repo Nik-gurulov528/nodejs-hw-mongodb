@@ -23,7 +23,7 @@ export const getAllContacts = async ({
   }
 
   const [total, contacts] = await Promise.all([
-    contactsCollection.find().countDocuments(),
+    contactsCollection.find({ ownerId: userId }).countDocuments(),
     await allContacts
       .skip(skip)
       .limit(perPage)
@@ -38,9 +38,12 @@ export const getAllContacts = async ({
   };
 };
 
-export const getExactContact = async (id) => {
+export const getExactContact = async (contactId, ownerId) => {
   try {
-    const contact = await contactsCollection.findById(id);
+    const contact = await contactsCollection.findOne({
+      _id: contactId,
+      ownerId: ownerId,
+    });
     return contact;
   } catch {
     return null;

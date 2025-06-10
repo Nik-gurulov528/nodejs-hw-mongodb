@@ -4,7 +4,7 @@ export const calculatePaginationParams = (
   totalContacts,
 ) => {
   const totalPages = Math.ceil(totalContacts / perPage);
-  const hasNextPage = Boolean(totalPages - page);
+  const hasNextPage = Boolean(totalPages - page > 0);
   const hasPreviousPage = page !== 1;
 
   return {
