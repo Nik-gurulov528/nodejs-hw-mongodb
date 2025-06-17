@@ -2,7 +2,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-export const getEnvData = (name, defaultValue) => {
+export const getEnvData = async (name, defaultValue) => {
   const value = process.env[name];
 
   if (value) {
