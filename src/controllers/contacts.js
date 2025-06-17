@@ -64,9 +64,8 @@ export const updateContactController = async (req, res) => {
   const { contactId } = req.params;
   const photo = req.file;
   let photoUrl;
-  const isCloudinaryEnable = await getEnvData('ENABLE_CLOUDINARY');
   if (photo) {
-    if (isCloudinaryEnable === 'true') {
+    if ((await getEnvData('ENABLE_CLOUDINARY')) === 'true') {
       photoUrl = await saveFileToCloudinary(photo);
     } else {
       photoUrl = await saveFileToUploadDir(photo);
