@@ -1,12 +1,12 @@
 import cloudinary from 'cloudinary';
-import { getEnvData } from './getEnvData.js';
 import * as fs from 'node:fs/promises';
+import { getCloudinaryData } from '../constants/getCloudinaryData.js';
 
 cloudinary.v2.config({
   secure: true,
-  cloud_name: getEnvData('CLOUDINARY_NAME'),
-  api_key: getEnvData('API_KEY'),
-  api_secret: getEnvData('API_SECRET'),
+  cloud_name: await getCloudinaryData('name'),
+  api_key: await getCloudinaryData('key'),
+  api_secret: await getCloudinaryData('secret'),
 });
 
 export const saveFileToCloudinary = async (file) => {
