@@ -1,8 +1,11 @@
+import { timeOptions } from '../constants/timeOptions.js';
 import {
   deleteSession,
   loginUser,
   refreshSession,
   registerUser,
+  requestResetToken,
+  resetPassword,
 } from '../services/auth.js';
 import { getUserId } from '../utils/getUserId.js';
 
@@ -66,4 +69,34 @@ export const clearSessionController = async (req, res) => {
   await deleteSession(userId);
 
   res.status(204).json();
+};
+
+export const sendResetEmailController = async (req, res) => {
+  const { email } = req.body;
+  await requestResetToken(email);
+
+  res.status(200).json({
+    status: 200,
+    message: 'Reset password email has been successfully sent.',
+    data: {},
+  });
+};
+
+export const resetPasswordController = async (req, res) => {
+  const infoBeforeReset = req.body;
+  await resetPassword(infoBeforeReset);
+
+  res.cookie('userId', '', {
+    httpOnly: true,
+    expires: new Date(Date.now() + timeOptions.second),
+  });
+  res.cookie('refreshToken', '', {
+    httpOnly: true,
+    expires: new Date(Date.now() + timeOptions.second),
+  });
+  res.status(200).json({
+    status: 200,
+    message: 'Password has been successfully reset.',
+    data: {},
+  });
 };

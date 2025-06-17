@@ -30,6 +30,7 @@ export const createValidation = Joi.object({
       'any.valid': 'ContactType cannot be this value',
       'any.required': 'ContactType is required!',
     }),
+  photo: Joi.string(),
 });
 
 export const updateValidation = Joi.object({
@@ -56,6 +57,7 @@ export const updateValidation = Joi.object({
     'string.base': 'ContactType should be a string!',
     'any.valid': 'ContactType cannot be this value',
   }),
+  photo: Joi.string(),
 });
 
 export const registerValidation = Joi.object({
@@ -90,6 +92,29 @@ export const loginValidation = Joi.object({
   }),
   password: Joi.string().required().messages({
     'string.base': 'Password should be a string!',
+    'any.required': 'Password is required!',
+  }),
+});
+
+export const sendResetEmailValidation = Joi.object({
+  email: Joi.string().min(3).max(20).email().required().messages({
+    'string.base': 'Email should be a string!',
+    'string.min': 'Email should have at least {#limit} characters',
+    'string.max': 'Email should have at most {#limit} characters',
+    'string.email': 'Email is invalid!',
+    'any.required': 'Email is required!',
+  }),
+});
+
+export const resetPasswordValidation = Joi.object({
+  token: Joi.string().required().messages({
+    'string.base': 'Token should be a string!',
+    'any.required': 'Token is required!',
+  }),
+  password: Joi.string().min(4).max(20).required().messages({
+    'string.base': 'Password should be a string!',
+    'string.min': 'Password should have at least {#limit} characters',
+    'string.max': 'Password should have at most {#limit} characters',
     'any.required': 'Password is required!',
   }),
 });

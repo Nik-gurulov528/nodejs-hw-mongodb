@@ -1,6 +1,9 @@
 import { contactsCollection } from '../models/contactsModel.js';
 import { calculatePaginationParams } from '../utils/calculatePaginationParams.js';
+import { getEnvData } from '../utils/getEnvData.js';
 import { getUserId } from '../utils/getUserId.js';
+import { saveFileToCloudinary } from '../utils/saveFileToCloudinary.js';
+import { saveFileToUploadDir } from '../utils/saveFileToUploadDir.js';
 
 export const getAllContacts = async ({
   page,
@@ -52,8 +55,19 @@ export const getExactContact = async (contactId, ownerId) => {
 
 export const createContact = async (payload) => {
   const userId = await getUserId(payload);
+  const photo = payload.file;
+  let photoUrl;
+  const isCloudinaryEnable = await getEnvData('ENABLE_CLOUDINARY');
+  if (photo) {
+    if (isCloudinaryEnable === 'true') {
+      photoUrl = await saveFileToCloudinary(photo);
+    } else {
+      photoUrl = await saveFileToUploadDir(photo);
+    }
+  }
   const newContact = await contactsCollection.create({
     ...payload.body,
+    photo: photoUrl,
     ownerId: userId,
   });
   return newContact;

@@ -29,6 +29,11 @@ const contactsSchema = new Schema(
       type: String,
       required: true,
     },
+    photo: {
+      type: String,
+      required: false,
+      default: null,
+    },
   },
   { timestamps: true, versionKey: false },
 );
