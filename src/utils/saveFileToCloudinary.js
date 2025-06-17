@@ -3,7 +3,7 @@ import * as fs from 'node:fs/promises';
 import { getEnvData } from './getEnvData.js';
 
 const cloudinaryOptions = {
-  name: await getEnvData('CLOUDINARY_NAME'),
+  name: await getEnvData('CLOUD_NAME'),
   key: await getEnvData('API_KEY'),
   secret: await getEnvData('API_SECRET'),
 };
