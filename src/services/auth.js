@@ -7,6 +7,7 @@ import randomBytes from 'randombytes';
 import jwt from 'jsonwebtoken';
 import { getEnvData } from '../utils/getEnvData.js';
 import { sendEmail } from '../utils/sendEmail.js';
+import { SMTP } from '../constants/smtp.js';
 
 export const registerUser = async (payload) => {
   const emailCheck = await usersModel.findOne({ email: payload.email });
@@ -103,7 +104,7 @@ export const requestResetToken = async (email) => {
   const appDomain = getEnvData('APP_DOMAIN');
 
   await sendEmail({
-    from: getEnvData('SMTP_FROM'),
+    from: getEnvData(SMTP.SMTP_FROM),
     to: email,
     subject: 'Reset password!',
     html: `<p>You can reset your password, just use <a href='https://${appDomain}/reset-password?token=${resetToken}'>this link</a></p>`,
