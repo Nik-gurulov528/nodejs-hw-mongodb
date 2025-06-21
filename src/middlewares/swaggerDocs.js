@@ -1,6 +1,6 @@
 import createHttpError from 'http-errors';
 import { swaggerJSON } from '../constants/swaggerJSON.js';
-import * as fs from 'node:fs/promises';
+import * as fs from 'node:fs';
 import swaggerUI from 'swagger-ui-express';
 
 export const swaggerDocs = () => {
