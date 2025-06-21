@@ -1,0 +1,22 @@
+tags:
+  - auth
+summary: delete session
+operationId: deleteSession
+description: If you want to stop using this platform, you can use this operation
+security: []
+parameters:
+  - in: cookie
+    name: userId
+    required: true
+    schema:
+      type: string
+      example: '68502089fc14eb0fe12571a2'
+responses:
+  '204':
+    description: 'Deletes session'
+  '401':
+    $ref: '../../../components/responses/401.yaml'
+  '404':
+    $ref: '../../../components/responses/404.yaml'
+  '500':
+    $ref: '../../../components/responses/500.yaml'

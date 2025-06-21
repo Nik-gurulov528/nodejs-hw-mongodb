@@ -1,0 +1,44 @@
+tags:
+  - auth
+summary: send message to reset password
+operationId: sendResetEmail
+description: If you want to reset your password, you need to send reset email first
+security: []
+requestBody:
+  content:
+    raw:
+      schema:
+        type: object
+        required:
+          - email
+        properties:
+          email:
+            description: User's email
+            type: string
+            example: 'vlad096@gmail.com'
+responses:
+  '200':
+    description: 'Sends reset email'
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 200
+            message:
+              type: string
+              example: 'Reset password email has been successfully sent.'
+            data:
+              type: object
+  '401':
+    $ref: '../../../components/responses/401.yaml'
+  '404':
+    $ref: '../../../components/responses/404.yaml'
+  '500':
+    $ref: '../../../components/responses/500.yaml'

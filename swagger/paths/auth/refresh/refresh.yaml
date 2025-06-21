@@ -1,0 +1,45 @@
+tags:
+  - auth
+summary: refresh your session
+operationId: refreshSession
+description: If your session expired, you can use this operation
+security: []
+parameters:
+  - in: cookie
+    name: userId
+    required: true
+    schema:
+      type: string
+      example: '68502089fc14eb0fe12571a2'
+responses:
+  '200':
+    description: 'Refreshes session'
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 200
+            message:
+              type: string
+              example: 'Successfully refreshed a session!'
+            data:
+              type: object
+              required:
+                - accessToken
+              properties:
+                accessToken:
+                  type: string
+                  example: 'q8F3LbY9RmZw6uHd2jKXrEVpPsbGmY'
+  '401':
+    $ref: '../../../components/responses/401.yaml'
+  '404':
+    $ref: '../../../components/responses/404.yaml'
+  '500':
+    $ref: '../../../components/responses/500.yaml'

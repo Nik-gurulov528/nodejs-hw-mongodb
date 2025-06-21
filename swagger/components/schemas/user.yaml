@@ -1,0 +1,33 @@
+required:
+  - _id
+  - name
+  - email
+  - password
+  - createdAt
+  - updatedAt
+properties:
+  _id:
+    type: string
+    description: User's id
+    example: '6848983cae8cfce8ba56a779'
+  name:
+    type: string
+    description: User's name
+    example: 'Maxim Padushka'
+  email:
+    type: string
+    description: User's email
+    example: 'Maxwell85734@gmail.com'
+  password:
+    type: string
+    description: User's password
+  createdAt:
+    type: string
+    format: date-time
+    description: When was user created
+    example: '2025-06-09T13:51:12.268+00:00'
+  updatedAt:
+    type: string
+    format: date-time
+    description: When was user updated
+    example: '2025-06-10T08:46:00.630+00:00'

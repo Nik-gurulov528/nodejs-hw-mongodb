@@ -1,0 +1,19 @@
+description: 'Server got error'
+content:
+  application/json:
+    schema:
+      type: object
+      required:
+        - status
+        - message
+        - data
+      properties:
+        status:
+          type: integer
+          example: 500
+        message:
+          type: string
+          example: Sorry, something went wrong!
+        error:
+          type: string
+          example: The server was unable to complete your request. Please try again later.
