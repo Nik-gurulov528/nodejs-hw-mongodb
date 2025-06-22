@@ -15,7 +15,12 @@ export const setupServer = () => {
   dotenv.config();
 
   app.use(express.json());
-  app.use(cors());
+  app.use(
+    cors({
+      origin: 'https://nodejs-hw-mongodb-ye3b.onrender.com',
+      credentials: true,
+    }),
+  );
   app.use(cookieParser());
 
   app.use(pino({ transport: { target: 'pino-pretty' } }));
