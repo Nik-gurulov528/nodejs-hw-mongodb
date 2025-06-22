@@ -495,7 +495,7 @@
         "security": [],
         "requestBody": {
           "content": {
-            "raw": {
+            "application/json": {
               "schema": {
                 "type": "object",
                 "required": [
@@ -576,7 +576,7 @@
         "security": [],
         "requestBody": {
           "content": {
-            "raw": {
+            "application/json": {
               "schema": {
                 "type": "object",
                 "required": [
@@ -765,7 +765,7 @@
         "security": [],
         "requestBody": {
           "content": {
-            "raw": {
+            "application/json": {
               "schema": {
                 "type": "object",
                 "required": [
@@ -834,7 +834,7 @@
         "security": [],
         "requestBody": {
           "content": {
-            "raw": {
+            "application/json": {
               "schema": {
                 "type": "object",
                 "required": [

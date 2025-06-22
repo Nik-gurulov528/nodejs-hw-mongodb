@@ -6,7 +6,7 @@ description: Before start to work, you should login
 security: []
 requestBody:
   content:
-    raw:
+    application/json:
       schema:
         type: object
         required:

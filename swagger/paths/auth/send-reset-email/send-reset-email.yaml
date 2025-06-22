@@ -6,7 +6,7 @@ description: If you want to reset your password, you need to send reset email fi
 security: []
 requestBody:
   content:
-    raw:
+    application/json:
       schema:
         type: object
         required:
