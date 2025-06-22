@@ -42,12 +42,6 @@ parameters:
       type: string
       example: 'work'
       enum: ['home', 'work', 'personal']
-  - in: cookie
-    name: userId
-    required: true
-    schema:
-      type: string
-      example: '68502089fc14eb0fe12571a2'
 responses:
   '200':
     description: 'Get list of contacts'
@@ -68,7 +62,37 @@ responses:
               example: 'Successfully found contacts!'
             data:
               type: object
-              $ref: '../../components/schemas/contact.yaml'
+              required:
+                - data
+                - page
+                - perPage
+                - totalItems
+                - totalPages
+                - hasPreviousPage
+                - hasNextPage
+              properties:
+                data:
+                  type: array
+                  items:
+                    $ref: '../../components/schemas/contact.yaml'
+                page:
+                  type: number
+                  example: 1
+                perPage:
+                  type: number
+                  example: 15
+                totalItems:
+                  type: number
+                  example: 45
+                totalPages:
+                  type: number
+                  example: 3
+                hasPreviousPage:
+                  type: boolean
+                  example: false
+                hasNextPage:
+                  type: boolean
+                  example: true
   '401':
     $ref: '../../components/responses/401.yaml'
   '404':
