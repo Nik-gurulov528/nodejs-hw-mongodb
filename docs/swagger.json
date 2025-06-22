@@ -326,15 +326,6 @@
                 "personal"
               ]
             }
-          },
-          {
-            "in": "cookie",
-            "name": "userId",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "example": "68502089fc14eb0fe12571a2"
-            }
           }
         ],
         "responses": {
@@ -360,7 +351,47 @@
                     },
                     "data": {
                       "type": "object",
-                      "$ref": "#/components/schemas/contact"
+                      "required": [
+                        "data",
+                        "page",
+                        "perPage",
+                        "totalItems",
+                        "totalPages",
+                        "hasPreviousPage",
+                        "hasNextPage"
+                      ],
+                      "properties": {
+                        "data": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/contact"
+                          }
+                        },
+                        "page": {
+                          "type": "number",
+                          "example": 1
+                        },
+                        "perPage": {
+                          "type": "number",
+                          "example": 15
+                        },
+                        "totalItems": {
+                          "type": "number",
+                          "example": 45
+                        },
+                        "totalPages": {
+                          "type": "number",
+                          "example": 3
+                        },
+                        "hasPreviousPage": {
+                          "type": "boolean",
+                          "example": false
+                        },
+                        "hasNextPage": {
+                          "type": "boolean",
+                          "example": true
+                        }
+                      }
                     }
                   }
                 }
@@ -910,10 +941,8 @@
           "_id",
           "name",
           "phoneNumber",
-          "isFavourite",
           "contactType",
           "ownerId",
-          "photo",
           "createdAt",
           "updatedAt"
         ],
@@ -956,7 +985,7 @@
           },
           "photo": {
             "type": "string",
-            "format": "url",
+            "format": "binary",
             "description": "Contact's avatar",
             "example": "https://res.cloudinary.com/dj2jac6qn/image/upload/v1750249291/ptpb3wiz9o0hqpeij7n5.jpg"
           },
