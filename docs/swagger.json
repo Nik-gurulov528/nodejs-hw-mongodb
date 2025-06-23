@@ -157,7 +157,7 @@
                   },
                   "photo": {
                     "type": "string",
-                    "format": "url",
+                    "format": "binary",
                     "description": "Contact's avatar",
                     "example": "https://res.cloudinary.com/dj2jac6qn/image/upload/v1750249291/ptpb3wiz9o0hqpeij7n5.jpg"
                   }
@@ -464,7 +464,7 @@
                   },
                   "photo": {
                     "type": "string",
-                    "format": "url",
+                    "format": "binary",
                     "description": "Contact's avatar",
                     "example": "https://res.cloudinary.com/dj2jac6qn/image/upload/v1750249291/ptpb3wiz9o0hqpeij7n5.jpg"
                   }
@@ -985,7 +985,7 @@
           },
           "photo": {
             "type": "string",
-            "format": "binary",
+            "format": "url",
             "description": "Contact's avatar",
             "example": "https://res.cloudinary.com/dj2jac6qn/image/upload/v1750249291/ptpb3wiz9o0hqpeij7n5.jpg"
           },
